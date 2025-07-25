@@ -4,17 +4,17 @@ import ContactMe from "@/components/ContactMe";
 import Education from "@/components/Education";
 import Intro from "@/components/Intro";
 import { Particles } from "@/components/magicui/particles";
-import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import { CustomDock } from "@/components/ui/CustomDock";
 import WorkExperience from "@/components/WorkExperience";
 import { useTheme } from "next-themes";
-import Image from "next/image";
+import { MailIcon } from "lucide-react";
+import { Projects } from "@/components/Projects";
 
 export default function Home() {
   const { theme } = useTheme();
-
   const particleColor = theme === "dark" ? "#ffffff" : "#000000";
+
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       <Particles className="absolute inset-0 z-10" color={particleColor} quantity={200}/>
@@ -24,6 +24,7 @@ export default function Home() {
           <WorkExperience />
           <Education />
           <Skills />
+          <h1 className='text-2xl font-bold'>Projects</h1>
           <Projects />
           <ContactMe />
           <CustomDock orientation = "vertical"/>
