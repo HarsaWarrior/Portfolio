@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       <Particles className="absolute inset-0 z-10" color={particleColor} quantity={200}/>
-      <div className="w-8/12 mx-auto font-sans items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <div className="relative lg:w-8/12 md:w-7/12 sm:w-full mx-auto font-sans items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
           <Intro />
           <WorkExperience />

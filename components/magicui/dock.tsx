@@ -28,7 +28,7 @@ const DEFAULT_MAGNIFICATION = 60;
 const DEFAULT_DISTANCE = 140;
 
 const dockVariants = cva(
-  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-max w-max items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md",
+  "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex items-center justify-center gap-2 rounded-2xl border p-2 backdrop-blur-md",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -46,6 +46,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     ref,
   ) => {
     const mouseX = useMotionValue(Infinity);
+    const mouseY = useMotionValue(Infinity);
 
     const renderChildren = () => {
       return React.Children.map(children, (child) => {
@@ -56,6 +57,7 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
           return React.cloneElement(child, {
             ...child.props,
             mouseX: mouseX,
+            mouseY: mouseY,
             size: iconSize,
             magnification: iconMagnification,
             distance: iconDistance,
@@ -68,15 +70,21 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     return (
       <motion.div
         ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
+        onMouseMove={(e) => {
+          mouseX.set(e.pageX);
+          mouseY.set(e.pageY);
+        }}
+        onMouseLeave={() => {
+          mouseX.set(Infinity);
+          mouseY.set(Infinity);
+        }}
         {...props}
         className={cn(dockVariants({ className }), {
           "items-start": direction === "top",
           "items-center": direction === "middle",
           "items-end": direction === "bottom",
-          "flex-col": orientation === "vertical",
-          "flex-row": orientation === "horizontal"
+          "flex-col w-[50px]": orientation === "vertical",
+          "flex-row h-[50px]": orientation === "horizontal"
         })}
       >
         {renderChildren()}
@@ -93,6 +101,7 @@ export interface DockIconProps
   magnification?: number;
   distance?: number;
   mouseX?: MotionValue<number>;
+  mouseY?: MotionValue<number>;
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
@@ -103,6 +112,7 @@ const DockIcon = ({
   magnification = DEFAULT_MAGNIFICATION,
   distance = DEFAULT_DISTANCE,
   mouseX,
+  mouseY,
   className,
   children,
   ...props
@@ -114,6 +124,11 @@ const DockIcon = ({
   const distanceCalc = useTransform(mouseX ?? defaultMouseX, (val: number) => {
     const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
+  });
+
+  const distanceCalcY = useTransform(mouseY ?? defaultMouseX, (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { y: 0, height: 0 };
+    return val - bounds.y - bounds.height / 2;
   });
 
   const sizeTransform = useTransform(
@@ -131,7 +146,7 @@ const DockIcon = ({
   return (
     <motion.div
       ref={ref}
-      style={{ width: scaleSize, height: scaleSize, padding }}
+      style={{ width: scaleSize, height: scaleSize, padding}}
       className={cn(
         "flex aspect-square cursor-pointer items-center justify-center rounded-full",
         className,

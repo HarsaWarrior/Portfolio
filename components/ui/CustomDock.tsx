@@ -104,10 +104,30 @@ export function CustomDock({ orientation }: {orientation: "vertical" | "horizont
       setMounted(true);
     }, []);
 
+    const [isMobile, setIsMobile] = useState (false);
+
+    useEffect(() => {
+      setIsMobile(window.innerWidth <= 768);
+
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      }
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize)
+      }
+    }, [])
+
   return (
-    <div className="fixed left-40 top-1/2 bottom-1/2 flex justify-center items-center">
+    <div className={
+      isMobile
+        ? "fixed left-1/2 right-1/2 bottom-5 flex justify-center items-center"
+        : "fixed left-40 top-1/2 bottom-1/2 flex justify-center items-center"
+      }>
         <TooltipProvider>
-            <Dock direction="middle" orientation= {orientation}>
+            <Dock direction="middle" orientation= {isMobile? "horizontal" : "vertical"}>
                 {DATA.navbar.map((item) => (
                 <DockIcon key={item.label}>
                     <Tooltip>
@@ -129,7 +149,7 @@ export function CustomDock({ orientation }: {orientation: "vertical" | "horizont
                     </Tooltip>
                 </DockIcon>
                 ))}
-                <Separator orientation="horizontal" className="h-full" />
+                <Separator orientation={isMobile? "vertical" : "horizontal"} className="h-full" />
                 {Object.entries(DATA.contact.social).map(([name, social]) => (
                 <DockIcon key={name}>
                     <Tooltip>
@@ -151,7 +171,7 @@ export function CustomDock({ orientation }: {orientation: "vertical" | "horizont
                     </Tooltip>
                 </DockIcon>
                 ))}
-                <Separator orientation="horizontal" className="h-full" />
+                <Separator orientation={isMobile? "vertical" : "horizontal"} className="h-full" />
                 <DockIcon>
                 <Tooltip>
                     <TooltipTrigger asChild>
