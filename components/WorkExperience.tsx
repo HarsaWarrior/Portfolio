@@ -16,14 +16,14 @@ const workExperience: WorkExperienceItem[] = [
     companyName: "Sify Technologies",
     jobTitle: "Cloud Engineer",
     description: [
-      "Automated and optimized infrastructure across 100+ servers and 5000+ endpoints on Azure, boosting scalability and reducing manual configurations by 40%.",
-      "Led the resolution of a 2-month backlog of critical activities, accelerating project timelines by 3x, completing in 1 month instead of 3.",
-      "Improved deployment efficiency and reliability by 20% through collaboration with cross-functional teams and strategic planning with clients.",
-      "Prevented 100+ hours of downtime by resolving critical production issues and managing identity access via Active Directory, Intune, and Entra.",
-      //"Maintained client websites and implemented requested changes, increasing client satisfaction scores by 10%.",
-      //"Authored documentation for client website functionalities and backend processes, ensuring better understanding and future maintainability.",
-      //"Collaborated with cross-functional teams to deliver features 15% faster, aligning with client needs and business objectives.",
-      //"Utilized version control tools like Git and GitHub to maintain code integrity and streamline collaborative workflows."
+      "Developed RESTful APIs using Java and Spring Boot, enabling seamless communication between the Frontend and Backend services, improving data processing speed by 25%.",
+      "Built a dynamic and responsive UI with React.js, Next.js, Tailwind CSS & Typescript, enhancing user engagement and satisfaction by 30%",
+      "Integrated Spring Security with JWT & RBAC, securing 100% of API endpoints and blocking unauthorized access attempts during internal audits.",
+      "Diagnosed and resolved complex bugs, enhancing application stability by 20% and reducing downtime.",
+      "Maintained client websites and implemented requested changes, increasing client satisfaction scores by 10%.",
+      "Authored documentation for client website functionalities and backend processes, ensuring better understanding and future maintainability.",
+      "Collaborated with cross-functional teams to deliver features 15% faster, aligning with client needs and business objectives.",
+      "Utilized version control tools like Git and GitHub to maintain code integrity and streamline collaborative workflows."
     ]
   },
   {
@@ -32,8 +32,8 @@ const workExperience: WorkExperienceItem[] = [
     companyName: "Sify Technologies",
     jobTitle: "Engineer Trainee",
     description: [
-      "Acquired foundational expertise in cloud computing, networking, and security with a hands-on understanding of cloud architecture, network protocols, and firewall configurations.",
-      "Supported ITIL-based incident workflows for resolving infrastructure issues, assisting in resolving cloud infrastructure issues in a structured workflow"
+      "Completed 6-month intensive training in web development, mastering core technologies including JavaScript, Java, React.js, Spring, Spring Boot and version control with Git.",
+      "Designed 3+ internal mini-projects using Spring Boot and React.js, simulating real-world user flows like authentication, CRUD operations"
     ]
   }
 ];
