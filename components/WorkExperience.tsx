@@ -14,7 +14,7 @@ const workExperience: WorkExperienceItem[] = [
     startDate: "July 2024",
     endDate: "July 2025",
     companyName: "Sify Technologies",
-    jobTitle: "Cloud Engineer",
+    jobTitle: "Software Engineer",
     description: [
       "Developed RESTful APIs using Java and Spring Boot, enabling seamless communication between the Frontend and Backend services, improving data processing speed by 25%.",
       "Built a dynamic and responsive UI with React.js, Next.js, Tailwind CSS & Typescript, enhancing user engagement and satisfaction by 30%",
